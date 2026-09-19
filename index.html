@@ -20,7 +20,10 @@
 
 /* LOCKED COVER */
 #cover{position:fixed;inset:0;width:100%;height:100dvh;z-index:10000;overflow:hidden;background:#080402;color:#f5ddb0;display:grid;place-items:center;touch-action:none}
-.cover-bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,#3a1d0d 0,#130704 58%,#070301 100%)}
+.cover-bg{position:absolute;inset:-2%;background:radial-gradient(circle at 50% 45%,#3a1d0d 0,#130704 58%,#070301 100%);background-size:cover;background-position:center 42%;animation:coverSlowZoom 12s ease-in-out infinite alternate;transform-origin:center center;will-change:transform}@keyframes coverSlowZoom{0%{transform:scale(1)}100%{transform:scale(1.16)}}@keyframes personReveal{0%{opacity:0;transform:translateX(-150px) scale(.94)}100%{opacity:1;transform:translateX(0) scale(1)}}
+@keyframes photoSettle{0%{transform:scale(.97)}70%{transform:scale(1.035)}100%{transform:scale(1.015)}}
+@keyframes nameReveal{0%{opacity:0;transform:translateY(16px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes personRevealRight{0%{opacity:0;transform:translateX(150px) scale(.94)}100%{opacity:1;transform:translateX(0) scale(1)}}
 .cover-shade{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 20%,rgba(0,0,0,.6) 100%),linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.58))}
 .cover-frame{position:absolute;inset:10px;border:1px solid var(--gold2);outline:1px solid rgba(237,197,107,.38);outline-offset:7px}
 .cover-inner{position:relative;z-index:4;width:min(1320px,92vw);text-align:center;padding:60px 20px 40px}
@@ -33,7 +36,7 @@
 .section{position:relative;min-height:100dvh;padding:118px max(5vw,34px) 100px;overflow:hidden}.dark{background:linear-gradient(180deg,#170906,#0d0402);color:var(--cream)}.light{background:var(--cream);color:var(--ink)}.section-frame{position:absolute;inset:22px;border:1px solid #b88437;outline:1px solid rgba(184,132,55,.28);outline-offset:7px;pointer-events:none}.section-head{text-align:center;position:relative;z-index:4;max-width:1100px;margin:0 auto 52px}.eyebrow{font-size:10px;letter-spacing:.42em;color:#b77e2d;margin-bottom:13px}h2{font:500 clamp(45px,6vw,78px)/.95 "Cormorant Garamond",serif;margin:0}.lead{max-width:800px;margin:18px auto 0;font-size:14px;line-height:1.9;color:#806348}.dark .lead{color:#d0b38b}
 
 /* COUPLE */
-.couple-script{font:400 clamp(55px,7vw,88px)/.9 Allura,cursive;color:#8c5b20;white-space:nowrap}.couple-grid{max-width:1040px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:70px;position:relative;z-index:4}.person{text-align:center}.photo-shell{position:relative;max-width:390px;aspect-ratio:1020/1610;margin:auto;display:block}.photo-shell .frame-art{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;z-index:3;pointer-events:none}.photo-shell .photo{position:absolute;left:4%;top:8%;width:92%;height:86%;object-fit:fill;display:block;z-index:2}.person-name{margin-top:12px;font:500 28px "Cormorant Garamond",serif;color:#4b2d1b}.person-role{font-size:9px;letter-spacing:.32em;color:#9a6a2a;margin-top:4px}
+.couple-script{font:400 clamp(55px,7vw,88px)/.9 Allura,cursive;color:#8c5b20;white-space:nowrap}.couple-grid{max-width:1040px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:70px;position:relative;z-index:4}.person{text-align:center;opacity:0;will-change:transform,opacity}.person.groom-reveal{transform:translateX(-150px) scale(.94)}.person.bride-reveal{transform:translateX(150px) scale(.94)}.person.bride-reveal.revealed{animation-name:personRevealRight}.person.revealed{animation:personReveal 1.6s cubic-bezier(.22,.61,.36,1) forwards}.person.revealed .photo-shell{animation:photoSettle 1.8s cubic-bezier(.22,.61,.36,1) .25s both}.person-name{animation:nameReveal 1s ease .9s both}.photo-shell{position:relative;max-width:390px;aspect-ratio:1020/1610;margin:auto;display:block}.photo-shell .frame-art{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;z-index:3;pointer-events:none}.photo-shell .photo{position:absolute;left:4%;top:8%;width:92%;height:86%;object-fit:fill;display:block;z-index:2}.person .photo-shell{will-change:transform}.person-name{margin-top:12px;font:500 28px "Cormorant Garamond",serif;color:#4b2d1b}.person-role{font-size:9px;letter-spacing:.32em;color:#9a6a2a;margin-top:4px}
 
 /* STORY */
 .story-grid{max-width:1160px;margin:auto;display:grid;grid-template-columns:1.15fr .85fr;gap:55px;align-items:center;position:relative;z-index:4}.story-img{border:10px solid #b57b29;outline:1px solid #e5bd69;outline-offset:-5px;box-shadow:0 20px 50px #0006}.story-img img{display:block;width:100%;height:560px;object-fit:cover}.story-copy h3{font:500 60px/1 "Cormorant Garamond",serif;margin:0 0 20px}.story-copy p{line-height:2;color:#6d5036}
@@ -50,7 +53,7 @@
 .location-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:34px;position:relative;z-index:4}.location-card{background:linear-gradient(135deg,#f8efd9,#ead8b5);border:2px solid #b98132;padding:26px;box-shadow:0 18px 50px #0005;position:relative}.location-card:before{content:"";position:absolute;inset:10px;border:1px solid #c99a51;pointer-events:none}.location-card>*{position:relative;z-index:2}.location-card h3{font:500 45px "Cormorant Garamond",serif;text-align:center;margin:8px 0}.location-card .meta{text-align:center;font-size:12px;line-height:1.8;color:#61452e;margin-bottom:18px}.map{height:280px;border:1px solid #bd8a3c;overflow:hidden;background:#d8c8a7}.map iframe{width:100%;height:100%;border:0}.map-btn{display:block;width:max-content;margin:17px auto 0;padding:11px 22px;background:#160804;border:1px solid #c7953d;color:#edc875;text-decoration:none;font-size:9px;letter-spacing:.22em}
 
 /* GALLERY */
-.gallery{max-width:1180px;margin:auto;columns:3 280px;column-gap:18px;position:relative;z-index:4}.gallery figure{margin:0 0 18px;border:1px solid #c18c3b;padding:5px;background:#1a0b05;overflow:hidden;break-inside:avoid;display:inline-block;width:100%;box-shadow:0 10px 25px #0004}.gallery img{width:100%;height:auto;display:block;object-fit:contain}
+.gallery{max-width:1180px;margin:auto;columns:3 280px;column-gap:18px;position:relative;z-index:4}.gallery figure{margin:0 0 18px;border:1px solid #c18c3b;padding:5px;background:#1a0b05;overflow:hidden;break-inside:avoid;display:inline-block;width:100%;box-shadow:0 10px 25px #0004;cursor:pointer;opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.61,.36,1),box-shadow .35s ease}.gallery figure.gallery-visible{opacity:1;transform:translateY(0)}.gallery figure:hover{box-shadow:0 16px 34px #0007}.gallery img{width:100%;height:auto;display:block;object-fit:contain}.gallery-hint{text-align:center;margin:6px auto 28px;font-size:9px;letter-spacing:.22em;color:#c9a873}.lightbox{position:fixed;inset:0;z-index:12000;background:rgba(4,2,1,.94);display:flex;align-items:center;justify-content:center;padding:30px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease,visibility .35s ease}.lightbox.open{opacity:1;visibility:visible;pointer-events:auto}.lightbox img{max-width:94vw;max-height:92vh;width:auto;height:auto;object-fit:contain;box-shadow:0 20px 70px #000b}.lightbox-close{position:absolute;top:18px;right:22px;width:48px;height:48px;border:1px solid #c7953d;background:#140804;color:#edc875;border-radius:50%;font:400 30px/1 "Cormorant Garamond",serif;cursor:pointer;z-index:3}.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:72px;border:1px solid #c7953d;background:rgba(20,8,4,.82);color:#edc875;font:400 42px/1 "Cormorant Garamond",serif;cursor:pointer;z-index:3;display:grid;place-items:center;transition:background .25s ease,transform .25s ease}.lightbox-nav:hover{background:rgba(45,20,8,.95)}.lightbox-prev{left:22px}.lightbox-next{right:22px}.lightbox-counter{position:absolute;top:24px;left:50%;transform:translateX(-50%);color:#e6c47a;font-size:9px;letter-spacing:.2em;z-index:3}.lightbox-caption{position:absolute;bottom:16px;left:70px;right:70px;text-align:center;color:#e6c47a;font-size:9px;letter-spacing:.2em}.lightbox-hint{position:absolute;bottom:40px;left:0;right:0;text-align:center;color:#c8aa7e;font-size:8px;letter-spacing:.16em;opacity:.8}@media(max-width:600px){.lightbox{padding:18px}.lightbox-nav{width:42px;height:58px;font-size:34px}.lightbox-prev{left:10px}.lightbox-next{right:10px}.lightbox-close{top:12px;right:12px;width:42px;height:42px}.lightbox-caption{bottom:13px;left:55px;right:55px}.lightbox-hint{display:none}}
 
 /* FOOTER */
 .footer{min-height:75dvh;display:grid;place-items:center;text-align:center}.footer .script{font:400 clamp(62px,9vw,105px)/.9 Allura,cursive;color:#e7bd68;white-space:nowrap}.footer p{font-size:10px;letter-spacing:.3em;color:#c8aa7e}
@@ -64,6 +67,10 @@
  .looks,.events,.location-grid{grid-template-columns:1fr}.celebrations-photo{margin:4px auto 28px;padding:6px}.look{height:430px}.event{min-height:auto;padding:70px 22px 35px}.event h3{font-size:44px}.location-card h3{font-size:39px}.map{height:240px}
  .gallery{columns:2 150px;column-gap:10px}.gallery figure{margin-bottom:10px}.footer{min-height:70dvh}.footer .script{font-size:clamp(58px,18vw,80px)}
 }
+@media (prefers-reduced-motion:reduce){.gallery figure{transition:none!important}.gallery figure{opacity:1!important;transform:none!important}}
+
+/* V18 — clean full-screen gallery: no counter, caption, or hint */
+.lightbox-counter,.lightbox-caption,.lightbox-hint{display:none !important;}
 </style>
 </head>
 <body>
@@ -129,7 +136,8 @@
 <section id="gallery" class="section dark">
  <div class="corner tl"><img src="corner-ornament.png" alt=""></div><div class="corner tr"><img src="corner-ornament.png" alt=""></div><div class="corner bl"><img src="corner-ornament.png" alt=""></div><div class="corner br"><img src="corner-ornament.png" alt=""></div><div class="section-frame"></div>
  <div class="section-head"><div class="eyebrow">GALLERY</div><h2>Moments to Remember</h2></div>
- <div class="gallery"><figure><img src="gallery-1.jpg" alt="Balinese Traditional — Couple"></figure><figure><img src="gallery-2.jpg" alt="International Bridal — Bride"></figure><figure><img src="gallery-3.jpg" alt="Balinese Traditional — Couple"></figure><figure><img src="gallery-4.jpg" alt="International Bridal — Couple"></figure><figure><img src="gallery-5.jpg" alt="Balinese Traditional — Couple"></figure><figure><img src="gallery-6.jpg" alt="International Bridal — Couple"></figure></div>
+ <div class="gallery-hint">KLIK FOTO UNTUK MELIHAT LEBIH BESAR</div>
+ <div class="gallery"><figure><img src="gallery-1.jpg" alt="Balinese Traditional — Couple"></figure><figure><img src="gallery-2.jpg" alt="International Bridal — Bride"></figure><figure><img src="gallery-3.jpg" alt="Balinese Traditional — Couple"></figure><figure><img src="gallery-4.jpg" alt="International Bridal — Couple"></figure><figure><img src="gallery-5.jpg" alt="Balinese Traditional — Couple"></figure><figure><img src="gallery-6.jpg" alt="International Bridal — Couple"></figure><figure><img src="gallery-7.jpg" alt="Gallery Photo 7 — replace this photo"></figure><figure><img src="gallery-8.jpg" alt="Gallery Photo 8 — replace this photo"></figure></div>
 </section>
 
 <section id="location" class="section light">
@@ -143,6 +151,8 @@
 
 <section class="section dark footer"><div><div class="eyebrow">WITH LOVE</div><div class="footer script">Ricky &amp; Dwi</div><p>29 SEPTEMBER · 1 OCTOBER 2026 · BALI</p></div></section>
 </main>
+
+<div id="lightbox" class="lightbox" aria-hidden="true"><button id="lightboxClose" class="lightbox-close" aria-label="Tutup">×</button><button id="lightboxPrev" class="lightbox-nav lightbox-prev" aria-label="Foto sebelumnya">‹</button><button id="lightboxNext" class="lightbox-nav lightbox-next" aria-label="Foto berikutnya">›</button><div id="lightboxCounter" class="lightbox-counter">1 / 8</div><img id="lightboxImg" src="" alt=""><div id="lightboxCaption" class="lightbox-caption"></div><div class="lightbox-hint">‹ › GANTI FOTO &nbsp; · &nbsp; ESC TUTUP</div></div>
 
 <script>
 (()=>{
@@ -159,6 +169,19 @@
  toggle.addEventListener('click',()=>{if(music.paused)music.play().then(()=>toggle.textContent='Ⅱ').catch(()=>{});else{music.pause();toggle.textContent='♫'}});
  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&opened&&started&&music.paused)music.play().catch(()=>{})});
  btn.addEventListener('click',async e=>{e.preventDefault();if(opened)return;await playMusic();opened=true;body.classList.add('opened');toggle.style.display='block';cover.style.transition='opacity 1s ease,transform 1s ease,visibility 0s linear 1s';cover.style.opacity='0';cover.style.transform='scale(1.025)';cover.style.visibility='hidden';setTimeout(()=>{cover.remove();window.scrollTo(0,0)},1050)});
+ const couplePeople=[...document.querySelectorAll('#couple .person')];couplePeople[0]?.classList.add('groom-reveal');couplePeople[1]?.classList.add('bride-reveal');
+ const revealObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('revealed');revealObserver.unobserve(entry.target)}})},{threshold:.22});couplePeople.forEach(el=>revealObserver.observe(el));
+ const galleryFigures=[...document.querySelectorAll('.gallery figure')];const galleryObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('gallery-visible');galleryObserver.unobserve(entry.target)}})},{threshold:.08});galleryFigures.forEach(el=>galleryObserver.observe(el));
+ const lightbox=document.getElementById('lightbox'),lightboxImg=document.getElementById('lightboxImg'),lightboxClose=document.getElementById('lightboxClose'),lightboxPrev=document.getElementById('lightboxPrev'),lightboxNext=document.getElementById('lightboxNext'),lightboxCounter=document.getElementById('lightboxCounter'),lightboxCaption=document.getElementById('lightboxCaption');
+ let currentGalleryIndex=0;
+ function showGalleryPhoto(index){if(!galleryFigures.length)return;currentGalleryIndex=(index+galleryFigures.length)%galleryFigures.length;const img=galleryFigures[currentGalleryIndex].querySelector('img');if(!img)return;lightboxImg.src=img.src;lightboxImg.alt=img.alt;lightboxCaption.textContent=img.alt;lightboxCounter.textContent=(currentGalleryIndex+1)+' / '+galleryFigures.length;}
+ function openLightbox(index){showGalleryPhoto(index);lightbox.classList.add('open');lightbox.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}
+ function closeLightbox(){lightbox.classList.remove('open');lightbox.setAttribute('aria-hidden','true');document.body.style.overflow='';lightboxImg.src='';}
+ function nextGalleryPhoto(){showGalleryPhoto(currentGalleryIndex+1)}
+ function prevGalleryPhoto(){showGalleryPhoto(currentGalleryIndex-1)}
+ galleryFigures.forEach((fig,index)=>fig.addEventListener('click',()=>openLightbox(index)));
+ lightboxPrev.addEventListener('click',e=>{e.stopPropagation();prevGalleryPhoto()});lightboxNext.addEventListener('click',e=>{e.stopPropagation();nextGalleryPhoto()});lightboxClose.addEventListener('click',closeLightbox);lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox()});document.addEventListener('keydown',e=>{if(!lightbox.classList.contains('open'))return;if(e.key==='Escape')closeLightbox();else if(e.key==='ArrowRight')nextGalleryPhoto();else if(e.key==='ArrowLeft')prevGalleryPhoto()});
+ let touchStartX=0;lightbox.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].clientX},{passive:true});lightbox.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchStartX;if(Math.abs(dx)>45){if(dx<0)nextGalleryPhoto();else prevGalleryPhoto()}},{passive:true});
 })();
 </script>
 </body></html>
